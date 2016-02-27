@@ -1,0 +1,106 @@
+1. CREATE TABLE `client` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `profile_id` int(11) DEFAULT NULL,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+    
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+2. CREATE TABLE `accounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `client_id` int(11) DEFAULT NULL,
+  `currency_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+    
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+3. CREATE TABLE `currency` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `default` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+    
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+4 CREATE TABLE `type_debit_credit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL, 
+  `status` int(11) DEFAULT NULL,
+    
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+5 CREATE TABLE `transaction` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
+  `client_id` int(11) DEFAULT NULL, 
+  `account_id` int(11) DEFAULT NULL, 
+  `type_debit_credit_id` int(11) DEFAULT NULL, 
+  `comment_id` int(11) DEFAULT NULL, 
+  `status` int(11) DEFAULT NULL,
+    
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+5. CREATE TABLE `comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+    
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+6. CREATE TABLE `type_accounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+    
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+7. CREATE TABLE `balance_start_year` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
+  `client_id` int(11) DEFAULT NULL, 
+  `account_id` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+    
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+8. CREATE TABLE `currency_rates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `currency_id` int(11) DEFAULT NULL,
+  `rate` decimal(10,2) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+    
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
