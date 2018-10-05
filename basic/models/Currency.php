@@ -16,6 +16,8 @@ use Yii;
  */
 class Currency extends \yii\db\ActiveRecord
 {
+
+
     /**
      * @inheritdoc
      */
@@ -48,5 +50,20 @@ class Currency extends \yii\db\ActiveRecord
             'default' => 'Default',
             'status' => 'Status',
         ];
+    }
+
+    public function getDefaultCurrency()
+    {
+        if ($this->default === 1) {
+            return 'yes';
+        }else{
+            return 'no';
+        }
+    }
+
+    public function getLastRate()
+    {
+        return $this->hasOne(CurrencyRates::className(), ['currency_id' => 'id'])
+            ->orderBy(['created_at' => SORT_DESC]);
     }
 }

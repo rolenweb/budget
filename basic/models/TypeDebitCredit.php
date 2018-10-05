@@ -17,6 +17,15 @@ use yii\behaviors\TimestampBehavior;
  */
 class TypeDebitCredit extends \yii\db\ActiveRecord
 {
+
+    const PROFIT = 1;
+    const LOST = 2;
+
+    const START_BALANCE = 1;
+    const TRANSFER_PROFIT = 26;
+    const TRANSFER_LOST = 25;
+
+
     /**
      * @inheritdoc
      */

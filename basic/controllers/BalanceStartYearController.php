@@ -38,7 +38,7 @@ class BalanceStartYearController extends Controller
      */
     public function actionIndex()
     {
-        $models_start_balance = BalanceStartYear::find()->with('client','account.currency')->all();
+        $models_start_balance = BalanceStartYear::find()->with('client','account.currency')->orderBy(['created_at' => SORT_DESC])->all();
 
         return $this->render('index', [
             'models_start_balance' => $models_start_balance,

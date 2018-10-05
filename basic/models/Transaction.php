@@ -20,6 +20,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class Transaction extends \yii\db\ActiveRecord
 {
+
+    const STATUS_ACTIVE = 1;
+
     /**
      * @inheritdoc
      */

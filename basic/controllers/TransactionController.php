@@ -12,9 +12,9 @@ use app\models\TransactionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
 
 
-error_reporting(0);
 /**
  * TransactionController implements the CRUD actions for Transaction model.
  */
@@ -41,10 +41,19 @@ class TransactionController extends Controller
      */
     public function actionIndex()
     {
-        $models_transaction = Transaction::find()->with('client', 'account.currency','type','comment')->orderBy(['created_at' => SORT_DESC])->all();
+        
 
+        $query = Transaction::find()->with('client', 'account.currency','type','comment');
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy(['created_at' => SORT_DESC])
+            ->all();
+        
         return $this->render('index', [
-            'models_transaction' => $models_transaction,
+            'models_transaction' => $models,
+            'pages' => $pages,
         ]);
     }
 
@@ -55,7 +64,8 @@ class TransactionController extends Controller
      */
     public function actionView($id)
     {   
-        $model = Transaction::find()->with('client', 'account.currency','type','comment')->where(['id' => $id])->limit(1)->one();
+        $model = Transaction::find()->with(['client', 'account.currency','type','comment'])->where(['id' => $id])->limit(1)->one();
+        
         return $this->render('view', [
             'model' => $model,
         ]);

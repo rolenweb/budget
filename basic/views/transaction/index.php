@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TransactionSearch */
@@ -29,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Счет</th>
                     <th>Тип</th>
                     <th>Тип(название)</th>
-                    <th>Сомментарий</th>
+                   
                     <th>Создан</th>
                     <th>Действия</th>
                 </tr>
@@ -37,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <tbody>
 <?php
 if ($models_transaction != NULL) {
+
     foreach ($models_transaction as $transaction) {
 ?>
                 <tr>
@@ -66,9 +68,7 @@ else{
                     <td>
                         <?= Html::encode($transaction->type->name) ?>
                     </td>
-                    <td>
-                        <?= Html::encode($transaction->comment->comment) ?>
-                    </td>
+                    
                     <td>
                         <?= Html::encode(date("d-m-y H:i",$transaction->created_at)) ?>
                     </td>
@@ -83,6 +83,14 @@ else{
 ?>            
             </tbody>
         </table>
+    </div>
+    <div>
+        <?php
+    echo LinkPager::widget([
+        'pagination' => $pages,
+    ]);
+
+        ?>
     </div>
 
 </div>

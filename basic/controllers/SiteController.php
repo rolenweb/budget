@@ -57,10 +57,16 @@ class SiteController extends Controller
         ];
     }
 
-    public function actionIndex()
+    public function actionIndex($year = null)
     {   
-        $start_year = date("Y").'-01-01 00:00:00';
-        $finish_year = date("Y").'-12-31 23:59:59';
+        if (empty($year)) {
+            $start_year = date("Y").'-01-01 00:00:00';
+            $finish_year = date("Y").'-12-31 23:59:59';
+        }else{
+            $start_year = date("Y",strtotime($year.'-01-01')).'-01-01 00:00:00';
+            $finish_year = date("Y",strtotime($year.'-01-01')).'-12-31 23:59:59';
+        }
+        
 
         $default_currency = Currency::find()->where(['default' => 1])->limit(1)->one();
         $curency_rate_today = CurrencyRates::find()->where(['between', 'created_at', strtotime(date("Y-m-d").' 00:00:00'), strtotime(date("Y-m-d").' 23:59:59')])->indexBy('currency_id')->all();
@@ -86,6 +92,7 @@ class SiteController extends Controller
         }
         $start_balance = BalanceStartYear::find()->where(['between', 'created_at', strtotime($start_year), strtotime($finish_year)])->indexBy('account_id')->all();
 
+        
         return $this->render('index',[
             'models_account' => $models_account,
             'array_balance' => $array_balance,

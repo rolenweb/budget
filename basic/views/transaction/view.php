@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
                 <tr>
                     <th>Пользователь</th>
-                    <td><?= Html::encode($model->client->firstname) ?> <?= Html::encode($model->client->lastname) ?></td>
+                    <td><?= Html::encode((empty($model->client->firstname) === false) ? $model->client->firstname : '') ?> <?= Html::encode((empty($model->client->lastname) === false) ? $model->client->lastname : '') ?></td>
                 </tr>
                 <tr>
                     <th>Сумма</th>
@@ -55,7 +55,7 @@ else{
                 </tr>
                 <tr>
                     <th>Коммнетарий</th>
-                    <td><?= Html::encode($model->comment->comment) ?></td>
+                    <td><?= Html::encode((empty($model->comment->comment) === false) ? $model->comment->comment : '') ?></td>
                 </tr>
             </tbody>
         </table>
