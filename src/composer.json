@@ -23,7 +23,8 @@
         "miloschuman/yii2-highcharts-widget": "^5.0",
         "mrssoft/yii2-sitemap": "dev-master",
         "guzzlehttp/guzzle": "~6.0",
-        "symfony/dom-crawler": "^3.4"
+        "symfony/dom-crawler": "^3.4",
+        "fxp/composer-asset-plugin": "~1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

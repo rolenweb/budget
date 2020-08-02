@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-
+//
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AccountsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
