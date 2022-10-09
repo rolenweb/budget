@@ -15,12 +15,12 @@ $this->title = 'Rolen Balance';
                     <thead>
                         <tr>
                             <th>
-                                Счет
+                                Account
                             </th>
-                            <th>Валюта</th>
-                            
+                            <th>Currency</th>
+                            <th>Total</th>
                             <th>
-                                Итог(<?= $default_currency->name ?>)
+                                Total(<?= $default_currency->name ?>)
                             </th>
                             
                         </tr>
@@ -30,6 +30,7 @@ $this->title = 'Rolen Balance';
 if ($models_account != NULL) {
     $total = 0;
     foreach ($models_account as $account) {
+        $total_in_currency = $start_balance[$account->id]->amount+$array_balance[$account->id];
         if ($default_currency->name == $account->currency->name) {
             $local_total = $start_balance[$account->id]->amount+$array_balance[$account->id];
         }
@@ -46,7 +47,7 @@ if ($models_account != NULL) {
                             <td>
                                 <?= Html::encode($account->currency->name) ?>
                             </td>
-                            
+                            <td><?= number_format($total_in_currency) ?></td>
                             <td><?= number_format($local_total) ?> </td>
                         </tr>
 <?php        
@@ -54,7 +55,7 @@ if ($models_account != NULL) {
 }
 ?>                       
                         <tr>
-                            <th colspan="2">ИТОГО</th>
+                            <th colspan="3">ИТОГО</th>
                             <th><?= number_format($total) ?> </th>
                         </tr> 
                     </tbody>
